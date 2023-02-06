@@ -11,6 +11,7 @@
       "src",
       "tests"
     ],
+    "strict": false,
     "baseUrl": "src",
     "paths": {
       "@/*": [

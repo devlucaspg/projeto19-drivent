@@ -16,7 +16,7 @@ export async function cleanDb() {
   await prisma.ticketType.deleteMany({});
 }
 
-export async function generateValidToken(user?: User) {
+export async function generateToken(user?: User) {
   const incomingUser = user || (await createUser());
   const token = jwt.sign({ userId: incomingUser.id }, process.env.JWT_SECRET);
 
