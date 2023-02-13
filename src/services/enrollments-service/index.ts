@@ -10,7 +10,7 @@ async function getAddressFromCEP(cep: string): Promise<AddressEnrollment> {
   const result = await getAddress(cep);
 
   if (!result) {
-    throw notFoundError(); //lançar -> pro arquivo que chamou essa função
+    throw notFoundError();
   }
 
   const { bairro, localidade, uf, complemento, logradouro } = result;
@@ -53,10 +53,8 @@ type GetAddressResult = Omit<Address, "createdAt" | "updatedAt" | "enrollmentId"
 async function createOrUpdateEnrollmentWithAddress(params: CreateOrUpdateEnrollmentWithAddress) {
   const enrollment = exclude(params, "address");
   const address = getAddressForUpsert(params.address);
-
-  //BUG - Verificar se o CEP é válido
-
   const result = await getAddressFromCEP(address.cep);
+
   if (result.error) {
     throw notFoundError();
   }

@@ -15,7 +15,6 @@ import {
   enrollmentsRouter,
   ticketsRouter,
   paymentsRouter,
-  hotelsRouter,
 } from "@/routers";
 import { hotelsRouter } from "./routers/hotels-router";
 
