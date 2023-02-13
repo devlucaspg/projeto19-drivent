@@ -13,5 +13,6 @@ export function createHotel() {
         },
       },
     },
+    include: { Rooms: true },
   });
 }

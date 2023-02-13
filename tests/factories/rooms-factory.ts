@@ -1,4 +1,5 @@
 import faker from "@faker-js/faker";
+import { prisma } from "@/config";
 
 export function createRooms() {
   const rooms = [];
@@ -9,4 +10,14 @@ export function createRooms() {
     });
   }
   return rooms;
+}
+
+export function createBookedRoom(hotelId: number) {
+  return prisma.room.create({
+    data: {
+      name: faker.name.findName(),
+      capacity: 0,
+      hotelId,
+    },
+  });
 }
